@@ -1,0 +1,36 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+#          skipSslValidation: true # 跳过ssl认证
+          uri: https://gitee.com/yangluyao97/springcloud-config.git
+          ### 搜索目录
+          search-paths:
+            - springcloud-config
+      ### 读取分支
+      label: master
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+
+# 暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
+
